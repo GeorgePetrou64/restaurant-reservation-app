@@ -1,0 +1,50 @@
+# Node modules (backend)
+node_modules/
+package-lock.json
+yarn.lock
+
+# React Native packager
+.expo/
+.expo-shared/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Xcode (iOS)
+/ios/build/
+/ios/Pods/
+/ios/*.xcworkspace
+*.xcodeproj/project.xcworkspace
+*.xcodeproj/xcshareddata/
+*.xcodeproj/xcuserdata/
+
+# Android
+/android/.gradle/
+/android/app/build/
+/android/build/
+/*.keystore
+*.jks
+
+# Buck build (Android)
+/buck-out/
+/.build/
+
+# Fastlane metadata and logs
+/fastlane/report.xml
+/fastlane/Preview.html
+/fastlane/screenshots
+/fastlane/test_output
+
+# Metro bundler cache
+/.metro-cache
+
+# Expo
+/ios/Pods/
+/web-build/
+/.terraform/
+
+# Misc
+.env
+.DS_Store
+*.swp
+*.swo
