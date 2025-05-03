@@ -72,7 +72,9 @@ JWT_SECRET=your_secret_key
 
 3.Μέσα στο directory του backend τρέχετε npm install 
 
-4.Μέσα στο directory του frontend τρέχετε npm install 
+4.Μέσα στο directory του frontend τρέχετε npm install
+
+5.Μέσα στο frontend στον φάκελο components, υπάρχει το αρχείο config, εκεί θα πρέπει να βάλετε την IP του υπολογιστή σας.
 
 Εκτέλεση
 --------
