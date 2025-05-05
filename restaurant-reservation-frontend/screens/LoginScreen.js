@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BASE_URL } from '../components/config';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -24,7 +25,7 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = async () => {
   try {
-    const response = await axios.post('http://192.168.1.146:5000/api/users/login', {
+    const response = await axios.post(`${BASE_URL}/api/users/login`, {
       email,
       password,
     });
@@ -32,7 +33,7 @@ export default function LoginScreen({ navigation }) {
     const token = response.data.token;
     await AsyncStorage.setItem('token', token);
 
-    const userResponse = await axios.get('http://192.168.1.146:5000/api/users/me', {
+    const userResponse = await axios.get(`${BASE_URL}/api/users/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

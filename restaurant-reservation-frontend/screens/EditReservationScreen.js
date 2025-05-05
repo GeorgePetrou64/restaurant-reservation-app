@@ -9,6 +9,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { BASE_URL } from '../components/config';
 
 export default function EditReservationScreen({ route, navigation }) {
   const { reservation } = route.params;
@@ -36,7 +37,7 @@ export default function EditReservationScreen({ route, navigation }) {
       const formattedDate = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
       const formattedTime = time.toTimeString().split(' ')[0];
       await axios.put(
-        `http://192.168.1.146:5000/api/reservations/${reservation.reservation_id}`,
+        `${BASE_URL}/api/reservations/${reservation.reservation_id}`,
         { date: formattedDate, time: formattedTime, people_count: parseInt(peopleCount,10) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

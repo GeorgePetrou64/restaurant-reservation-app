@@ -14,6 +14,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { BASE_URL } from '../components/config';
 
 export default function AdminReservationsScreen() {
   const { darkMode } = useContext(ThemeContext);
@@ -25,7 +26,7 @@ export default function AdminReservationsScreen() {
     try {
       const token = await AsyncStorage.getItem('token');
       const { data } = await axios.get(
-        'http://192.168.1.146:5000/api/admin/reservations',
+        `${BASE_URL}/api/admin/reservations`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setReservations(data);
@@ -63,7 +64,7 @@ export default function AdminReservationsScreen() {
     try {
       const token = await AsyncStorage.getItem('token');
       await axios.delete(
-        `http://192.168.1.146:5000/api/admin/reservations/${id}`,
+        `${BASE_URL}/api/admin/reservations/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       Alert.alert('Deleted', 'Reservation has been deleted');

@@ -12,6 +12,7 @@ import {
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { BASE_URL } from '../components/config';
 
 export default function ProfileScreen({ navigation }) {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -28,7 +29,7 @@ export default function ProfileScreen({ navigation }) {
         }
         // 🔥 Corrected endpoint:
         const res = await axios.get(
-          'http://192.168.1.146:5000/api/users/me',
+          `${BASE_URL}/api/users/me`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setUser(res.data); // { user_id, name, email, role }

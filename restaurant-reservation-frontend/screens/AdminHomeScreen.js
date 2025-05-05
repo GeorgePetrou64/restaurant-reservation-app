@@ -12,6 +12,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { BASE_URL } from '../components/config';
 
 export default function AdminHomeScreen({ navigation }) {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -23,7 +24,7 @@ export default function AdminHomeScreen({ navigation }) {
     try {
       const token = await AsyncStorage.getItem('token');
       const { data } = await axios.get(
-        'http://192.168.1.146:5000/api/admin/stats',
+        `${BASE_URL}/api/admin/stats`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setStats({ users: data.users, reservations: data.reservations });

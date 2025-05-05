@@ -13,6 +13,8 @@ import {
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { BASE_URL } from '../components/config';
+
 
 export default function HomeScreen({ navigation }) {
   const { darkMode } = useContext(ThemeContext);
@@ -25,8 +27,8 @@ export default function HomeScreen({ navigation }) {
     try {
       const token = await AsyncStorage.getItem('token');
       const url   = q
-        ? `http://192.168.1.146:5000/api/restaurants?q=${encodeURIComponent(q)}`
-        : 'http://192.168.1.146:5000/api/restaurants';
+        ? `${BASE_URL}/api/restaurants?q=${encodeURIComponent(q)}`
+        : `${BASE_URL}/api/restaurants`;
       const res = await axios.get(url, {
         headers: { Authorization: `Bearer ${token}` }
       });

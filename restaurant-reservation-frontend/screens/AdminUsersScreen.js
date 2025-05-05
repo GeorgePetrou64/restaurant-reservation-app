@@ -14,6 +14,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { BASE_URL } from '../components/config';
 
 // ─── AnimatedUserCard Component ─────────────────────────────────────────────
 function AnimatedUserCard({ user, index, onDelete, onToggleRole }) {
@@ -87,7 +88,7 @@ export default function AdminUsersScreen() {
     try {
       const token = await AsyncStorage.getItem('token');
       const { data } = await axios.get(
-        'http://192.168.1.146:5000/api/admin/users',
+        `${BASE_URL}/api/admin/users`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setUsers(data);
@@ -109,7 +110,7 @@ export default function AdminUsersScreen() {
     try {
       const token = await AsyncStorage.getItem('token');
       await axios.delete(
-        `http://192.168.1.146:5000/api/admin/users/${userId}`,
+        `${BASE_URL}/api/admin/users/${userId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       fetchUsers();
@@ -124,7 +125,7 @@ export default function AdminUsersScreen() {
     try {
       const token = await AsyncStorage.getItem('token');
       await axios.put(
-        `http://192.168.1.146:5000/api/admin/users/${user.user_id}/role`,
+        `${BASE_URL}/api/admin/users/${user.user_id}/role`,
         { role: newRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );

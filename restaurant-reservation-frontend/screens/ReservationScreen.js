@@ -16,6 +16,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { BASE_URL } from '../components/config';
 
 export default function ReservationScreen({ route, navigation }) {
   const { restaurant } = route.params;
@@ -36,7 +37,7 @@ export default function ReservationScreen({ route, navigation }) {
     try {
       const token = await AsyncStorage.getItem('token');
       await axios.post(
-        `http://192.168.1.146:5000/api/reservations`,
+        `${BASE_URL}/api/reservations`,
         {
           restaurant_id: restaurant.restaurant_id,
           date: date.toISOString().split('T')[0],

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import axios from 'axios';
+import { BASE_URL } from '../components/config';
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState('');
@@ -10,7 +11,7 @@ export default function RegisterScreen({ navigation }) {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://192.168.1.146:5000/api/users/register', {
+      const response = await axios.post(`${BASE_URL}/api/users/register`, {
         name,
         email,
         password,
